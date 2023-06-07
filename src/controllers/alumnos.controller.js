@@ -30,7 +30,7 @@ export const createAlumno = async (req, res) => {
     segundoNombre,
     primerApellido,
     segundoApellido,
-    Email,
+    email,
   } = req.body;
   try {
     const newAlumno = await Alumno.create({
@@ -39,7 +39,7 @@ export const createAlumno = async (req, res) => {
       segundoNombre,
       primerApellido,
       segundoApellido,
-      Email,
+      email,
     });
 
     res.json(newAlumno);
@@ -56,7 +56,7 @@ export const createAlumno = async (req, res) => {
 //     segundoNombre,
 //     primerApellido,
 //     segundoApellido,
-//     Email,
+//     email,
 //   } = req.body;
 
 //   try {
@@ -71,7 +71,7 @@ export const createAlumno = async (req, res) => {
 //     alumno.segundoNombre = segundoNombre;
 //     alumno.primerApellido = primerApellido;
 //     alumno.segundoApellido = segundoApellido;
-//     alumno.Email = Email;
+//     alumno.email = email;
 
 //     await alumno.save();
 

@@ -24,7 +24,7 @@ export const Alumno = sequelize.define('Alumnos', {
   segundoApellido: {
     type: DataTypes.STRING,
   },
-  Email: {
+  email: {
     type: DataTypes.STRING,
   },
 });

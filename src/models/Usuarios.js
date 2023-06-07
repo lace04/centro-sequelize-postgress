@@ -2,7 +2,7 @@ import { sequelize } from '../database/database.js';
 import { DataTypes } from 'sequelize';
 import { Alumno } from './Alumnos.js';
 import { Rol } from './Roles.js';
-// import { Recuperacion_Password } from './Recuperacion_Password.js';
+import { Recuperacion_Password } from './Recuperacion_Password.js';
 
 export const Usuario = sequelize.define(
   'Usuarios',
@@ -12,20 +12,20 @@ export const Usuario = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    Usuario: {
+    usuario: {
       type: DataTypes.STRING,
     },
-    Password: {
+    password: {
       type: DataTypes.STRING,
     },
-    Email: {
+    email: {
       type: DataTypes.STRING,
     },
-    RolId: {
+    rolId: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    AlumnoId: {
+    alumnoId: {
       type: DataTypes.INTEGER,
       allowNull: true,
       // references: {
@@ -38,8 +38,8 @@ export const Usuario = sequelize.define(
   }
 );
 
-Usuario.belongsTo(Alumno, { foreignKey: 'AlumnoId' }); // 1:1 (1 usuario tiene 1 alumno)
+Usuario.belongsTo(Alumno, { foreignKey: 'alumnoId' }); // 1:1 (1 usuario tiene 1 alumno)
 
-Usuario.belongsTo(Rol, { foreignKey: 'RolId' }); // 1:1 (1 usuario tiene 1 rol)
+Usuario.belongsTo(Rol, { foreignKey: 'rolId' }); // 1:1 (1 usuario tiene 1 rol)
 
-// Usuario.hasMany(Recuperacion_Password, { foreignKey: 'UsuarioId' });  // 1:N (1 usuario puede tener muchas recuperaciones de contraseña)
+Usuario.hasMany(Recuperacion_Password, { foreignKey: 'usuarioId' });  // 1:N (1 usuario puede tener muchas recuperaciones de contraseña)

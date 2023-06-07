@@ -7,21 +7,21 @@ export const Curso = sequelize.define('Cursos', {
     primaryKey: true,
     autoIncrement: true,
   },
-  Nombre: {
+  nombre: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  Descripcion: {
+  descripcion: {
     type: DataTypes.STRING,
   },
-  Temario: {
+  temario: {
     type: DataTypes.STRING,
   },
-  Codigo: {
+  codigo: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  Creditos: {
+  creditos: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },

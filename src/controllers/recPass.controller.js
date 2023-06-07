@@ -25,12 +25,12 @@ export const getRecPass = async (req, res) => {
 };
 
 export const createRecPass = async (req, res) => {
-  const { UsuarioId, Token } = req.body;
+  const { usuarioId, token } = req.body;
 
   try {
     const newRecPass = await Recuperacion_Password.create({
-      UsuarioId,
-      Token,
+      usuarioId,
+      token,
     });
     res.json(newRecPass);
   } catch (error) {
@@ -40,7 +40,7 @@ export const createRecPass = async (req, res) => {
 
 export const updateRecPass = async (req, res) => {
   const { id } = req.params;
-  const { UsuarioId, Token } = req.body;
+  const { usuarioId, token } = req.body;
 
   try {
     const recPass = await Recuperacion_Password.findOne({
@@ -48,8 +48,8 @@ export const updateRecPass = async (req, res) => {
         idRec_Pass: id,
       },
     });
-    recPass.UsuarioId = UsuarioId;
-    recPass.Token = Token;
+    recPass.usuarioId = usuarioId;
+    recPass.token = token;
 
     await recPass.save();
 

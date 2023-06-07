@@ -24,15 +24,15 @@ export const getCurso = async (req, res) => {
 };
 
 export const createCurso = async (req, res) => {
-  const { Nombre, Descripcion, Temario, Codigo, Creditos } = req.body;
+  const { nombre, descripcion, temario, codigo, creditos } = req.body;
 
   try {
     const newCurso = await Curso.create({
-      Nombre,
-      Descripcion,
-      Temario,
-      Codigo,
-      Creditos,
+      nombre,
+      descripcion,
+      temario,
+      codigo,
+      creditos,
     });
 
     res.json(newCurso);
@@ -43,7 +43,7 @@ export const createCurso = async (req, res) => {
 
 export const updateCurso = async (req, res) => {
   const { id } = req.params;
-  const { Nombre, Descripcion, Temario, Codigo, Creditos } = req.body;
+  const { nombre, descripcion, temario, codigo, creditos } = req.body;
 
   try {
     const curso = await Curso.findOne({
@@ -52,11 +52,11 @@ export const updateCurso = async (req, res) => {
       },
     });
 
-    curso.Nombre = Nombre;
-    curso.Descripcion = Descripcion;
-    curso.Temario = Temario;
-    curso.Codigo = Codigo;
-    curso.Creditos = Creditos;
+    curso.nombre = nombre;
+    curso.descripcion = descripcion;
+    curso.temario = temario;
+    curso.codigo = codigo;
+    curso.creditos = creditos;
 
     await curso.save();
 

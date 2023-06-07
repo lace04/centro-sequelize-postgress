@@ -1,5 +1,6 @@
 import { sequelize } from '../database/database.js';
 import { DataTypes } from 'sequelize';
+import { Usuario } from './Usuarios.js';
 
 export const Recuperacion_Password = sequelize.define(
   'Recuperacion_Passwords',
@@ -9,12 +10,14 @@ export const Recuperacion_Password = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    UsuarioId: {
+    usuarioId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    Token: {
+    token: {
       type: DataTypes.STRING,
     },
   }
 );
+
+// Usuario.belongsTo(Usuario, { foreignKey: 'idUsuario' });  // 1:N (1 usuario puede tener muchas recuperaciones de contraseña)

@@ -19,11 +19,11 @@ export const createUsuario = async (req, res) => {
   const { usuario, password, email, rolId, alumnoId } = req.body;
   try {
     const newUsuario = await Usuario.create({
-      Usuario: usuario,
-      Password: password,
-      Email: email,
-      RolId: rolId,
-      AlumnoId: alumnoId,
+      usuario,
+      password,
+      email,
+      rolId,
+      alumnoId,
     });
     res.json(newUsuario);
   } catch (error) {
@@ -37,11 +37,11 @@ export const updateUsuario = async (req, res) => {
 
   try {
     const UpdatedUsuario = await Usuario.findByPk(id);
-    UpdatedUsuario.Usuario = usuario;
-    UpdatedUsuario.Password = password;
-    UpdatedUsuario.Email = email;
-    UpdatedUsuario.RolId = rolId;
-    UpdatedUsuario.AlumnoId = alumnoId;
+    UpdatedUsuario.usuario = usuario;
+    UpdatedUsuario.password = password;
+    UpdatedUsuario.email = email;
+    UpdatedUsuario.rolId = rolId;
+    UpdatedUsuario.alumnoId = alumnoId;
 
     await UpdatedUsuario.save();
     res.json(UpdatedUsuario);
@@ -72,7 +72,7 @@ export const getUsuarioRol = async (req, res) => {
   const { id } = req.params;
   try {
     const rol = await Usuario.findAll({
-      where: { RolId: id },
+      where: { rolId: id },
     });
     res.json(rol);
   } catch (error) {
@@ -84,7 +84,7 @@ export const getUsuarioAlumno = async (req, res) => {
   const { id } = req.params;
   try {
     const alumno = await Usuario.findAll({
-      where: { AlumnoId: id },
+      where: { alumnoId: id },
     });
     res.json(alumno);
   } catch (error) {

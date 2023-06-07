@@ -24,10 +24,10 @@ export const getRol = async (req, res) => {
 };
 
 export const createRol = async (req, res) => {
-  const { Nombre } = req.body;
+  const { nombre } = req.body;
   try {
     const newRol = await Rol.create({
-      Nombre,
+      nombre,
     });
 
     res.json(newRol);
@@ -38,7 +38,7 @@ export const createRol = async (req, res) => {
 
 export const updateRol = async (req, res) => {
   const { id } = req.params;
-  const { Nombre } = req.body;
+  const { nombre } = req.body;
 
   try {
     const rol = await Rol.findOne({
@@ -47,7 +47,7 @@ export const updateRol = async (req, res) => {
       },
     });
 
-    rol.Nombre = Nombre;
+    rol.nombre = nombre;
 
     await rol.save();
 
