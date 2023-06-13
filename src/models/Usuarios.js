@@ -3,43 +3,54 @@ import { DataTypes } from 'sequelize';
 import { Alumno } from './Alumnos.js';
 import { Rol } from './Roles.js';
 import { Recuperacion_Password } from './Recuperacion_Password.js';
+import bcrypt from 'bcrypt';
 
-export const Usuario = sequelize.define(
-  'Usuarios',
-  {
-    idUsuario: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    usuario: {
-      type: DataTypes.STRING,
-    },
-    password: {
-      type: DataTypes.STRING,
-    },
-    email: {
-      type: DataTypes.STRING,
-    },
-    rolId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
-    alumnoId: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      // references: {
-      //   model: "Alumnos",
-      //   key: "id",
-      // },
-      // onDelete: "CASCADE",
-      // onUpdate: "CASCADE",
-    },
-  }
-);
+export const Usuario = sequelize.define('Usuarios', {
+  idUsuario: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  usuario: {
+    type: DataTypes.STRING,
+  },
+  password: {
+    type: DataTypes.STRING,
+  },
+  email: {
+    type: DataTypes.STRING,
+  },
+  rolId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  alumnoId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    // references: {
+    //   model: "Alumnos",
+    //   key: "id",
+    // },
+    // onDelete: "CASCADE",
+    // onUpdate: "CASCADE",
+  },
+});
 
 Usuario.belongsTo(Alumno, { foreignKey: 'alumnoId' }); // 1:1 (1 usuario tiene 1 alumno)
 
 Usuario.belongsTo(Rol, { foreignKey: 'rolId' }); // 1:1 (1 usuario tiene 1 rol)
 
-Usuario.hasMany(Recuperacion_Password, { foreignKey: 'usuarioId' });  // 1:N (1 usuario puede tener muchas recuperaciones de contraseña)
+Usuario.hasMany(Recuperacion_Password, { foreignKey: 'usuarioId' }); // 1:N (1 usuario puede tener muchas recuperaciones de contraseña)
+
+Usuario.encryptPassword = async (password) => {
+  const saltRounds = 10;
+  return await bcrypt.hash(password, saltRounds);
+};
+
+Usuario.comparePassword = async (password, receivedPassword) => {
+  return await bcrypt.compare(password, receivedPassword);
+};
+
+Usuario.beforeCreate(async (usuario) => {
+  usuario.password = await Usuario.encryptPassword(usuario.password);
+});

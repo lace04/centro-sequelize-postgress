@@ -8,11 +8,14 @@ import alumnosRoutes from './routes/alumnos.routes.js';
 import usuariosRoutes from './routes/usuarios.routes.js';
 import recPassRoutes from './routes/recPass.routes.js';
 import authRoutes from './routes/auth.routes.js';
+//Roles
+import { createRoles } from './libs/initialSetup.js';
 
 const app = express();
 
 //middlewares
 app.use(express.json());
+createRoles();
 app.use(morgan('dev'));
 
 app.use('/api', rolesRoutes);
@@ -21,6 +24,6 @@ app.use('/api', cursosRoutes);
 app.use('/api', alumnosRoutes);
 app.use('/api', usuariosRoutes);
 app.use('/api', recPassRoutes);
-app.use('/api/auth', authRoutes);
+app.use('/api', authRoutes);
 
 export default app;

@@ -1,0 +1,19 @@
+Estudiante
+{
+  "nif": "EST-001",
+  "primerNombre": "Luis",
+  "segundoNombre": "Alberto",
+  "primerApellido": "Cifuentes",
+  "segundoApellido": "Escobar",
+  "email": "email@.com"
+}
+
+Usuario
+
+{
+  "usuario": "UserStudent",
+  "password": "123456",
+  "email": "email@.com",
+  "rolId": "2",
+  "alumnoId": "2"
+}
