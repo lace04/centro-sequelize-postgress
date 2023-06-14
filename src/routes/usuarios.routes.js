@@ -8,13 +8,23 @@ import {
   getUsuarioRol,
   getUsuarioAlumno,
 } from '../controllers/usuarios.controller.js';
-import { checkRolesExisted, checkDuplicateUsernameOrEmail } from '../middlewares/verifySignup.js';
+import {
+  checkRolesExisted,
+  checkDuplicateUsernameOrEmail,
+} from '../middlewares/verifySignup.js';
+
+//validators
+import { validateCreate } from '../validators/usuarios.js';
 
 const router = Router();
 
 router.get('/usuarios', getUsuarios);
 router.get('/usuarios/:id', getUsuario);
-router.post('/usuarios', [checkRolesExisted, checkDuplicateUsernameOrEmail], createUsuario);
+router.post(
+  '/usuarios',
+  [validateCreate, checkRolesExisted, checkDuplicateUsernameOrEmail],
+  createUsuario
+);
 router.put('/usuarios/:id', updateUsuario);
 router.delete('/usuarios/:id', deleteUsuario);
 
