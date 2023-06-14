@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import expressRateLimit from 'express-rate-limit';
 
 import rolesRoutes from './routes/roles.routes.js';
 import inscripcionesRoutes from './routes/inscripciones.routes.js';
@@ -17,6 +18,11 @@ const app = express();
 app.use(express.json());
 createRoles();
 app.use(morgan('dev'));
+
+app.use(expressRateLimit({
+  max: 10,
+  windowMs: 1000,
+}));
 
 app.use('/api', rolesRoutes);
 app.use('/api', inscripcionesRoutes);
