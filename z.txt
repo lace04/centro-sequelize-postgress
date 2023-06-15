@@ -11,11 +11,11 @@ Estudiante
 Usuario
 
 {
-  "usuario": "UserStudent",
-  "password": "123456",
-  "email": "email@.com",
-  "rolId": "2",
-  "alumnoId": "2"
+  "usuario": "Administrador",
+  "password": "123456789",
+  "email": "admin@email.com",
+  "rolId": 1,
+  "alumnoId": 1
 }
 
 
@@ -27,13 +27,14 @@ Autorización: Roles by DB
 
 Limitación de velocidad de uso. Express rate limit
 
-Faltantes:
 *Validar entrada. Asegúrese de validar todas las entradas que se pasan a su API. **En parte Sequelize npm install express-validator
 
 *Protección contra ataques de inyección: Aplica técnicas para proteger la API contra ataques de inyección de código, como la inyección de SQL o la inyección de comandos. Utiliza consultas parametrizadas o mecanismos de filtrado y validación de datos para prevenir estos ataques. **npm install express-validator
 
 
-**Protección contra ataques de fuerza bruta: Implementa medidas para evitar ataques de fuerza bruta, como bloquear temporalmente las cuentas después de un número determinado de intentos fallidos de autenticación. bycript
+Faltantes:
+
+**Protección contra ataques de fuerza bruta: Implementa medidas para evitar ataques de fuerza bruta, como bloquear temporalmente las cuentas después de un número determinado de intentos fallidos de autenticación. bcrypt
 
 
 Monitoreo de actividad sospechosa: Implementa un sistema de monitoreo que registre y analice la actividad de la API en busca de comportamientos anormales o sospechosos. Esto puede ayudar a identificar posibles intentos de intrusión o abuso. **npm install sentry

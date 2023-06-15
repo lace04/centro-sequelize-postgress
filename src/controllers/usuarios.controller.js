@@ -23,12 +23,12 @@ export const createUsuario = async (req, res) => {
   try {
     const { usuario, password, email, rolId, alumnoId } = req.body;
 
-    const saltRounds = 10;
-    const passwordHash = await bcrypt.hash(password, saltRounds);
+    // const saltRounds = 10;
+    // const passwordHash = await bcrypt.hash(password, saltRounds);
 
     const newUsuario = await Usuario.create({
       usuario,
-      password: passwordHash,
+      password,
       email,
       rolId,
       alumnoId,

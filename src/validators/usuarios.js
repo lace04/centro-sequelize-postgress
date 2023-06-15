@@ -37,13 +37,7 @@ export const validateCreate = [
     .notEmpty()
     .exists()
     .isNumeric()
-    .withMessage('El rol es obligatorio')
-    .custom((value, { req }) => {
-      //my rol are 2
-      if (value > 2) {
-        throw new Error('El rol no existe');
-      }
-    }),
+    .withMessage('El rol es obligatorio'),
 
   check('alumnoId')
     .notEmpty()

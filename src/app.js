@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import helmet from 'helmet';
 import expressRateLimit from 'express-rate-limit';
 
 import rolesRoutes from './routes/roles.routes.js';
@@ -11,13 +12,16 @@ import recPassRoutes from './routes/recPass.routes.js';
 import authRoutes from './routes/auth.routes.js';
 //Roles
 import { createRoles } from './libs/initialSetup.js';
+import { initialAlumno } from './libs/initialSetup.js';
 
 const app = express();
 
 //middlewares
 app.use(express.json());
 createRoles();
+initialAlumno();
 app.use(morgan('dev'));
+app.use(helmet());
 
 app.use(expressRateLimit({
   max: 10,
